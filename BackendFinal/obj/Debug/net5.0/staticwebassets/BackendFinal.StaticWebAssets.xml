@@ -1,1 +1,3 @@
-﻿<StaticWebAssets Version="1.0" />
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="_content/Smart.Blazor" Path="C:\Users\zazar\.nuget\packages\smart.blazor\15.2.1\build\..\staticwebassets\" />
+</StaticWebAssets>

@@ -11,10 +11,6 @@ namespace BackendFinal.Controllers
     [Route("[controller]")]
     public class WeatherForecastService : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
 
         private readonly ILogger<WeatherForecastService> _logger;
         public WeatherForecastService(ILogger<WeatherForecastService> logger)
@@ -35,14 +31,6 @@ namespace BackendFinal.Controllers
         public IEnumerable<User_Working> Get()
         {
             var C = new Context();
-            User_Working u = new User_Working();
-            u.id = 0;
-            u.password = "Marin";
-            u.username = "Medicu";
-            u.userType = 1;
-            //C.Users.Add(u);
-            //C.SaveChanges();
-            u=C.Users.Find(1);
             List<User_Working> L = new List<User_Working>();
             L = C.Users.ToList();
             return L;

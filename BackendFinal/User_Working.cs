@@ -14,6 +14,9 @@ namespace BackendFinal
         public string username { get; set; }
         public string password { get; set; }
         public int userType { get; set; }
+        public Admin A { get; set; }
+        public Doctor D { get; set; }
+        public Donator DD { get; set; }
         public User_Working(string username, string password, int type)
         {
             id = gid;

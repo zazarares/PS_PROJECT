@@ -14,7 +14,8 @@ namespace BackendFinal
         public string LastName { get; set; }
         public string BloodType { get; set; }
         public string Zona { get; set; }
-        public Appointment App { get; set; }
+        public string telefon { get; set;}
+        public List<Appointment> App { get; set; }
         public Donator()
         {
 
@@ -28,6 +29,5 @@ namespace BackendFinal
             this.LastName = LastName;
             this.Zona = Zona;
         }
-        public User_Working U=new User_Working();
     }
 }

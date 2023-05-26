@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BackendFinal;
 
 namespace BackendFinal.Controllers
 {
@@ -10,9 +13,11 @@ namespace BackendFinal.Controllers
     [Route("[controller]")]
     public class AppointmentController : Controller
     {
-        public IActionResult Index()
+        private readonly ILogger<AppointmentController> _logger;
+        Doctor d;
+        public AppointmentController(ILogger<AppointmentController> logger)
         {
-            return View();
+            _logger = logger;
         }
         [HttpPost]
         public void Post(Appointment W)
@@ -20,6 +25,13 @@ namespace BackendFinal.Controllers
             Context c = new Context();
             c.Appointments.Add(W);
             c.SaveChanges();
+        }
+        [HttpGet]
+        public List<Appointment> Get()
+        {
+            Context C = new Context();
+            List<Appointment> DL = C.Appointments.ToList<Appointment>();
+            return DL;
         }
     }
 }

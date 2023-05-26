@@ -17,11 +17,11 @@ namespace BackendFinal
         public string FirstName { get; set; }
         [JsonProperty("lastname")]
         public string LastName { get; set; }
+        public List<Appointment> App { get; set; }
         public Doctor()
         {
             
         }
-        public User_Working U = new User_Working();
 
 
     }

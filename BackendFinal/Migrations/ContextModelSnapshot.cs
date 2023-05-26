@@ -22,9 +22,7 @@ namespace BackendFinal.Migrations
             modelBuilder.Entity("BackendFinal.Admin", b =>
                 {
                     b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.HasKey("id");
 
@@ -41,10 +39,10 @@ namespace BackendFinal.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Docid")
+                    b.Property<int>("DoctorID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Lid")
+                    b.Property<int>("DonatorID")
                         .HasColumnType("int");
 
                     b.Property<int>("timeslot")
@@ -52,9 +50,9 @@ namespace BackendFinal.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("Docid");
+                    b.HasIndex("DoctorID");
 
-                    b.HasIndex("Lid");
+                    b.HasIndex("DonatorID");
 
                     b.ToTable("Appointments");
                 });
@@ -62,9 +60,7 @@ namespace BackendFinal.Migrations
             modelBuilder.Entity("BackendFinal.Doctor", b =>
                 {
                     b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("CNP")
                         .HasColumnType("nvarchar(max)");
@@ -83,11 +79,6 @@ namespace BackendFinal.Migrations
             modelBuilder.Entity("BackendFinal.Donator", b =>
                 {
                     b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("Appid")
                         .HasColumnType("int");
 
                     b.Property<string>("BloodType")
@@ -105,9 +96,10 @@ namespace BackendFinal.Migrations
                     b.Property<string>("Zona")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.Property<string>("telefon")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("Appid");
+                    b.HasKey("id");
 
                     b.ToTable("Donators");
                 });
@@ -148,28 +140,65 @@ namespace BackendFinal.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("BackendFinal.Admin", b =>
+                {
+                    b.HasOne("BackendFinal.User_Working", null)
+                        .WithOne("A")
+                        .HasForeignKey("BackendFinal.Admin", "id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("BackendFinal.Appointment", b =>
                 {
-                    b.HasOne("BackendFinal.Doctor", "Doc")
-                        .WithMany()
-                        .HasForeignKey("Docid");
+                    b.HasOne("BackendFinal.Doctor", null)
+                        .WithMany("App")
+                        .HasForeignKey("DoctorID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    b.HasOne("BackendFinal.Location", "L")
-                        .WithMany()
-                        .HasForeignKey("Lid");
+                    b.HasOne("BackendFinal.Donator", null)
+                        .WithMany("App")
+                        .HasForeignKey("DonatorID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+                });
 
-                    b.Navigation("Doc");
-
-                    b.Navigation("L");
+            modelBuilder.Entity("BackendFinal.Doctor", b =>
+                {
+                    b.HasOne("BackendFinal.User_Working", null)
+                        .WithOne("D")
+                        .HasForeignKey("BackendFinal.Doctor", "id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BackendFinal.Donator", b =>
                 {
-                    b.HasOne("BackendFinal.Appointment", "App")
-                        .WithMany()
-                        .HasForeignKey("Appid");
+                    b.HasOne("BackendFinal.User_Working", null)
+                        .WithOne("DD")
+                        .HasForeignKey("BackendFinal.Donator", "id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
+            modelBuilder.Entity("BackendFinal.Doctor", b =>
+                {
                     b.Navigation("App");
+                });
+
+            modelBuilder.Entity("BackendFinal.Donator", b =>
+                {
+                    b.Navigation("App");
+                });
+
+            modelBuilder.Entity("BackendFinal.User_Working", b =>
+                {
+                    b.Navigation("A");
+
+                    b.Navigation("D");
+
+                    b.Navigation("DD");
                 });
 #pragma warning restore 612, 618
         }

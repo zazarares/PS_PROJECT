@@ -118,3 +118,9 @@ E:\source\repos\BackendFinal\BackendFinal\obj\Debug\net5.0\BackendFinal.dll
 E:\source\repos\BackendFinal\BackendFinal\obj\Debug\net5.0\ref\BackendFinal.dll
 E:\source\repos\BackendFinal\BackendFinal\obj\Debug\net5.0\BackendFinal.pdb
 E:\source\repos\BackendFinal\BackendFinal\obj\Debug\net5.0\BackendFinal.genruntimeconfig.cache
+E:\source\repos\BackendFinal\BackendFinal\bin\Debug\net5.0\SendGrid.dll
+E:\source\repos\BackendFinal\BackendFinal\bin\Debug\net5.0\StarkbankEcdsa.dll
+E:\source\repos\BackendFinal\BackendFinal\bin\Debug\net5.0\Microsoft.IdentityModel.Abstractions.dll
+E:\source\repos\BackendFinal\BackendFinal\bin\Debug\net5.0\Twilio.dll
+E:\source\repos\BackendFinal\BackendFinal\bin\Debug\net5.0\BackendFinal.StaticWebAssets.xml
+E:\source\repos\BackendFinal\BackendFinal\bin\Debug\net5.0\Smart.Blazor.dll
